@@ -39,6 +39,16 @@
 
 双击 `build\intro.exe`，用 `←` / `→` 切换卡片，按 `Esc` 退出。
 
+## 分发
+
+```powershell
+.\package.ps1
+```
+
+产物：`dist\StimFlow-4KB-intro-win32.zip`，解压后只有 `intro.exe`、`README.txt`、`LICENSE`。不需要安装、运行库或网络；Windows 10/11 x64 上双击即可。
+
+exe 未签名，首次运行可能触发 SmartScreen；4KB 压缩程序也可能被部分杀毒软件误报，分发时最好附上源码和构建说明。
+
 ## 许可
 
 intro 源码沿用仓库的 MIT 许可。Crinkler 是独立的构建工具，采用 Zlib 许可；`get-crinkler.ps1` 只负责下载，不把 Crinkler 提交进仓库。

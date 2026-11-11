@@ -34,6 +34,7 @@ Desktop.ini
 
 # 4KB intro
 /intro/build/
+/intro/dist/
 /intro/tools/crinkler/
 /intro/tools/crinkler30b.zip
 /intro/*.exe

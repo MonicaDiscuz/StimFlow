@@ -348,6 +348,8 @@ cd intro
 
 产物：`intro\build\intro.exe`。
 
+发布包：`.\intro\package.ps1` → `intro\dist\StimFlow-4KB-intro-win32.zip`，解压后双击 `intro.exe`。
+
 ---
 
 ## 常见问题
