@@ -1,0 +1,18 @@
+#pragma code_page(65001)
+
+#include <windows.h>
+
+// 退出时的缓存处理对话框。控件 ID：
+//   IDOK   = 保留
+//   100    = 清除本次运行
+//   101    = 清除全部
+// 关闭按钮 / Esc 一律按「保留」处理。
+110 DIALOGEX 0, 0, 300, 62
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "StimFlow"
+FONT 9, "Microsoft YaHei UI"
+BEGIN
+  PUSHBUTTON "A. 保留缓存并退出", IDOK, 10, 20, 100, 16
+  PUSHBUTTON "B. 清除本次缓存", 100, 116, 20, 84, 16
+  PUSHBUTTON "C. 清除全部缓存", 101, 206, 20, 84, 16
+END
