@@ -70,7 +70,7 @@ float4 PSMain(VOut i) : SV_TARGET {
         float2 c = float2(1.6 * sin(ang), 1.6 - 1.6 * cos(ang));
         float2 l = (q - c) / hs;
 
-        float a = ang;
+        float a = -ang;
         float ca = cos(a);
         float sa = sin(a);
         float2 r = float2(l.x * ca - l.y * sa, l.x * sa + l.y * ca);
