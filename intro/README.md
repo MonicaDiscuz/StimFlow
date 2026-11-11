@@ -2,7 +2,7 @@
 
 一个独立的 4KB intro 子项目，不是 StimFlow 主程序的一部分。
 
-它不读取图片，也不使用 WIC。画面由 Direct3D 11 的全屏像素着色器实时生成：一排程序化的 Cover Flow 卡片，带透视、旋转、阴影和倒影。
+它不读取图片，也不使用 WIC。画面由 Direct3D 11 的全屏像素着色器实时生成：扇形排列的程序化 Cover Flow 卡片，带透视、旋转、阴影和倒影。
 
 ## 规格
 
@@ -10,7 +10,8 @@
 - 无 CRT、无音频、无外部文件
 - Direct3D 11，Shader Model 4.0
 - Crinkler 3.0b 压缩
-- 目标：`intro.exe` ≤ 4096 字节
+- 目标：`intro.exe` ≤ 4096 字节（当前约 2.9 KB）
+- 键盘 `←` / `→` 切换中心卡片，`Esc` 退出
 
 ## 构建
 
@@ -36,7 +37,7 @@
 
 ## 运行
 
-双击 `build\intro.exe`，按 `Esc` 退出。
+双击 `build\intro.exe`，用 `←` / `→` 切换卡片，按 `Esc` 退出。
 
 ## 许可
 

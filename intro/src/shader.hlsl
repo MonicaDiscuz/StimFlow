@@ -51,25 +51,26 @@ float4 PSMain(VOut i) : SV_TARGET {
 
     float3 col = lerp(float3(0.015, 0.015, 0.022), float3(0.0, 0.0, 0.0),
                       saturate(length(q) * 1.3));
-    col += float3(0.08, 0.03, 0.12) * exp(-abs(q.y - 0.14) * 9.0) * 0.35;
-    col += float3(0.10, 0.05, 0.16) * exp(-abs(q.y - 0.14) * 45.0) * 0.35;
+    col += float3(0.08, 0.03, 0.12) * exp(-abs(q.y - 0.24) * 9.0) * 0.35;
+    col += float3(0.10, 0.05, 0.16) * exp(-abs(q.y - 0.24) * 45.0) * 0.35;
 
     float2 grid = abs(frac(q * 14.0) - 0.5);
     col += smoothstep(0.47, 0.5, max(grid.x, grid.y)) * 0.012;
 
-    float pos = sin(t * 0.20) * 0.8;
+    float pos = p.w;
     float best = 99.0;
 
     [loop] for (int i = 0; i < 9; i++) {
-        float d = (float)i - 4.0 - pos;
+        float d = (float)i - pos;
+        d -= 9.0 * floor(d / 9.0 + 0.5);
         float ad = abs(d);
-        float z = ad * 0.55;
-        float s = 1.0 / (1.0 + z);
-        float2 hs = float2(0.18, 0.24) * s;
-        float2 c = float2(d * 0.30 * s, 0.14 - hs.y);
+        float ang = d * 0.22;
+        float s = 1.0 / (1.0 + ad * 0.14);
+        float2 hs = float2(0.15, 0.20) * s;
+        float2 c = float2(1.6 * sin(ang), 1.6 - 1.6 * cos(ang));
         float2 l = (q - c) / hs;
 
-        float a = clamp(d, -1.0, 1.0) * 0.55;
+        float a = ang;
         float ca = cos(a);
         float sa = sin(a);
         float2 r = float2(l.x * ca - l.y * sa, l.x * sa + l.y * ca);
@@ -78,7 +79,7 @@ float4 PSMain(VOut i) : SV_TARGET {
         float sdf = length(max(e, 0.0)) + min(max(e.x, e.y), 0.0) - 0.08;
         float card = 1.0 - smoothstep(-0.03, 0.03, sdf);
 
-        float rb = (c.y - hs.y - q.y) / hs.y;
+        float rb = (q.y - (c.y + hs.y)) / hs.y;
         float rmask = saturate(1.0 - rb * 4.0) * smoothstep(0.02, 0.08, rb) *
                       (1.0 - smoothstep(0.0, 0.08, abs(r.x) - 0.92)) * 0.22;
 

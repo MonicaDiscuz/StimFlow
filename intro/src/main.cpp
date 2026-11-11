@@ -7,10 +7,18 @@
 extern "C" int _fltused = 0;
 
 static volatile LONG g_run = 1;
+static float g_target = 4.0f;
+static float g_pos = 4.0f;
 
 static LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wp, LPARAM lp) {
-  if (msg == WM_KEYDOWN && wp == VK_ESCAPE) {
-    g_run = 0;
+  if (msg == WM_KEYDOWN) {
+    if (wp == VK_ESCAPE) {
+      g_run = 0;
+    } else if (wp == VK_LEFT) {
+      g_target -= 1.0f;
+    } else if (wp == VK_RIGHT) {
+      g_target += 1.0f;
+    }
   } else if (msg == WM_DESTROY) {
     g_run = 0;
   }
@@ -32,6 +40,7 @@ extern "C" void __cdecl Entry() {
   HWND hwnd = CreateWindowExA(WS_EX_TOPMOST, "s", "STIMFLOW", WS_POPUP | WS_VISIBLE, 0, 0, screen_w,
                               screen_h, 0, 0, instance, 0);
   ShowCursor(0);
+  SetForegroundWindow(hwnd);
 
   static DXGI_SWAP_CHAIN_DESC swap_desc;
   swap_desc.BufferCount = 1;
@@ -117,12 +126,13 @@ extern "C" void __cdecl Entry() {
     }
 
     D3D11_MAPPED_SUBRESOURCE mapped;
+    g_pos += (g_target - g_pos) * 0.18f;
     if (SUCCEEDED(context->Map(cb, 0, D3D11_MAP_WRITE_DISCARD, 0, &mapped))) {
       float* params = (float*)mapped.pData;
       params[0] = (GetTickCount() - start) * 0.001f;
       params[1] = (float)screen_w;
       params[2] = (float)screen_h;
-      params[3] = 0.0f;
+      params[3] = g_pos;
       context->Unmap(cb, 0);
     }
 

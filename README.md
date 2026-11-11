@@ -338,7 +338,7 @@ recursive=1
 
 ## 4KB intro
 
-另有一个独立的 4KB intro 子项目：[`intro/`](intro/README.md)。它不读取图片，用 D3D11 全屏着色器程序化生成 Cover Flow 卡片墙，用 Crinkler 压到 4KB 以内；目标平台是 Windows x86（64 位系统通过 WoW64 运行）。
+另有一个独立的 4KB intro 子项目：[`intro/`](intro/README.md)。它不读取图片，用 D3D11 全屏着色器程序化生成扇形排列的 Cover Flow 卡片墙，用 Crinkler 压到 4KB 以内；目标平台是 Windows x86（64 位系统通过 WoW64 运行）。运行后用 `←` / `→` 切换卡片，`Esc` 退出。
 
 ```powershell
 cd intro
