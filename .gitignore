@@ -31,3 +31,9 @@
 Thumbs.db
 Desktop.ini
 .DS_Store
+
+# 4KB intro
+/intro/build/
+/intro/tools/crinkler/
+/intro/tools/crinkler30b.zip
+/intro/*.exe

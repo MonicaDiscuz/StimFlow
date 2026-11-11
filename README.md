@@ -26,6 +26,7 @@ StimFlow 用 Direct3D 11 画一条三维卡片带：中间一张正面显示，�
 - [`.scr` 屏保模式](#scr-屏保模式)
 - [配置文件](#配置文件)
 - [构建](#构建)
+- [4KB intro](#4kb-intro)
 - [常见问题](#常见问题)
 - [许可证](#许可证)
 
@@ -332,6 +333,20 @@ recursive=1
 产物：`build\Release\StimFlow.exe`。
 
 不需要 Python、vcpkg 或任何第三方库；着色器在构建时由 `fxc.exe` 编译成头文件。
+
+---
+
+## 4KB intro
+
+另有一个独立的 4KB intro 子项目：[`intro/`](intro/README.md)。它不读取图片，用 D3D11 全屏着色器程序化生成 Cover Flow 卡片墙，用 Crinkler 压到 4KB 以内；目标平台是 Windows x86（64 位系统通过 WoW64 运行）。
+
+```powershell
+cd intro
+.\get-crinkler.ps1
+.\build.ps1
+```
+
+产物：`intro\build\intro.exe`。
 
 ---
 
